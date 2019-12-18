@@ -13,14 +13,18 @@
  //  author: User @relation(link: INLINE)
 // }
 type User {
-   id: ID! @id
-   name: String!
-   emprunts: [Emprunts!]
-  comments : [Comments!]
+  id: ID! @id
+  name: String!
+  emprunts: [Emprunts]
+  comments : [Comments!]!
 
 
 }
 type Emprunts {
+id: ID! @id
+titre: [Book]
+datetoback : String!
+sortie: String!
 
 }
 type Book {
