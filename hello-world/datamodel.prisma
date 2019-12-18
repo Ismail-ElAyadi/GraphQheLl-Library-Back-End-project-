@@ -1,15 +1,31 @@
-type User {
-  id: ID! @id
-  email: String @unique
-  name: String!
-  books: [Book!]!
-}
+//type User {
+//  id: ID! @id
+//  email: String @unique
+//  name: String!
+// books: [Book!]!
+// }
 
-type Book  {
-  id: ID! @id
-  title: String!
-  published: Boolean! @default(value: false)
+// type Book {
+//   id: ID! @id
+ //  title: String!
+ //  published: Boolean! @default(value: false)
   // relation c'est celui qui rentre dans l'autre mmmh.
-  author: User @relation(link: INLINE)
-}
+ //  author: User @relation(link: INLINE)
+// }
+type User {
+   id: ID! @id
+   name: String!
+   emprunts: [Emprunts!]
+  comments : [Comments!]
 
+
+}
+type Emprunts {
+
+}
+type Book {
+title : String
+}
+type Comments {
+
+}
