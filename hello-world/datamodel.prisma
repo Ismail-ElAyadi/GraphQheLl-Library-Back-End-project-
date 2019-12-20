@@ -12,24 +12,25 @@
   // relation c'est celui qui rentre dans l'autre mmmh.
  //  author: User @relation(link: INLINE)
 // }
-type User {
+type Utilisateur {
   id: ID! @id
-  name: String!
+  nom: String!
   emprunts: [Emprunts]
-  comments : [Comments!]!
+  commentaire : [Commentaire!]!
 
 
 }
 type Emprunts {
 id: ID! @id
 titre: [Book]
-datetoback : String!
-sortie: String!
+dateRetour : String!
+dateSortie: String!
+
 
 }
-type Book {
-title : String
+type Livre {
+titre : String
 }
-type Comments {
+type Commentaire {
 
 }
