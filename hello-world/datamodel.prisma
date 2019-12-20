@@ -1,44 +1,33 @@
-//type User {
-//  id: ID! @id
-//  email: String @unique
-//  name: String!
-// books: [Book!]!
-// }
-
-// type Book {
-//   id: ID! @id
- //  title: String!
- //  published: Boolean! @default(value: false)
-  // relation c'est celui qui rentre dans l'autre mmmh.
- //  author: User @relation(link: INLINE)
-// }
 type Utilisateur {
   id: ID! @id
   nom: String!
-  emprunts: [Emprunts]
-  commentaire : [Commentaire]
+  emprunts: [Emprunts] @relation(link: INLINE)
+  commentaire: [Commentaire] @relation(link: INLINE)
 
 
 }
-scalar Date
+
 
 type Emprunts {
 id: ID! @id
-titre: [Livre]
-dateRetour : String!
+titre: [Livre] @relation(link: INLINE)
+dateRetour: String!
 dateSortie: String!
 
 
 }
 type Livre {
 id: ID! @id
-titre : String
+titre: String
 auteur: String
-edition : String
-stock : Int
-commentaire: [Commentaire]
+edition: String
+stock: Int
+commentaire: [Commentaire] @relation(link: INLINE)
 
 }
 type Commentaire {
-
+  id: ID! @id
+  message: String!
+  eval: Int
+  utilite: Int
 }

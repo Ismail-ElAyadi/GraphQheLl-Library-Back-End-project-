@@ -16,8 +16,10 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  post: (where?: PostWhereInput) => Promise<boolean>;
-  user: (where?: UserWhereInput) => Promise<boolean>;
+  commentaire: (where?: CommentaireWhereInput) => Promise<boolean>;
+  emprunts: (where?: EmpruntsWhereInput) => Promise<boolean>;
+  livre: (where?: LivreWhereInput) => Promise<boolean>;
+  utilisateur: (where?: UtilisateurWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -39,82 +41,160 @@ export interface Prisma {
    * Queries
    */
 
-  post: (where: PostWhereUniqueInput) => PostNullablePromise;
-  posts: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
+  commentaire: (
+    where: CommentaireWhereUniqueInput
+  ) => CommentaireNullablePromise;
+  commentaires: (args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<Post>;
-  postsConnection: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
+  }) => FragmentableArray<Commentaire>;
+  commentairesConnection: (args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => PostConnectionPromise;
-  user: (where: UserWhereUniqueInput) => UserNullablePromise;
-  users: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
+  }) => CommentaireConnectionPromise;
+  emprunts: (where: EmpruntsWhereUniqueInput) => EmpruntsNullablePromise;
+  empruntses: (args?: {
+    where?: EmpruntsWhereInput;
+    orderBy?: EmpruntsOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<User>;
-  usersConnection: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
+  }) => FragmentableArray<Emprunts>;
+  empruntsesConnection: (args?: {
+    where?: EmpruntsWhereInput;
+    orderBy?: EmpruntsOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => UserConnectionPromise;
+  }) => EmpruntsConnectionPromise;
+  livre: (where: LivreWhereUniqueInput) => LivreNullablePromise;
+  livres: (args?: {
+    where?: LivreWhereInput;
+    orderBy?: LivreOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Livre>;
+  livresConnection: (args?: {
+    where?: LivreWhereInput;
+    orderBy?: LivreOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => LivreConnectionPromise;
+  utilisateur: (
+    where: UtilisateurWhereUniqueInput
+  ) => UtilisateurNullablePromise;
+  utilisateurs: (args?: {
+    where?: UtilisateurWhereInput;
+    orderBy?: UtilisateurOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Utilisateur>;
+  utilisateursConnection: (args?: {
+    where?: UtilisateurWhereInput;
+    orderBy?: UtilisateurOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => UtilisateurConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createPost: (data: PostCreateInput) => PostPromise;
-  updatePost: (args: {
-    data: PostUpdateInput;
-    where: PostWhereUniqueInput;
-  }) => PostPromise;
-  updateManyPosts: (args: {
-    data: PostUpdateManyMutationInput;
-    where?: PostWhereInput;
+  createCommentaire: (data: CommentaireCreateInput) => CommentairePromise;
+  updateCommentaire: (args: {
+    data: CommentaireUpdateInput;
+    where: CommentaireWhereUniqueInput;
+  }) => CommentairePromise;
+  updateManyCommentaires: (args: {
+    data: CommentaireUpdateManyMutationInput;
+    where?: CommentaireWhereInput;
   }) => BatchPayloadPromise;
-  upsertPost: (args: {
-    where: PostWhereUniqueInput;
-    create: PostCreateInput;
-    update: PostUpdateInput;
-  }) => PostPromise;
-  deletePost: (where: PostWhereUniqueInput) => PostPromise;
-  deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
-  createUser: (data: UserCreateInput) => UserPromise;
-  updateUser: (args: {
-    data: UserUpdateInput;
-    where: UserWhereUniqueInput;
-  }) => UserPromise;
-  updateManyUsers: (args: {
-    data: UserUpdateManyMutationInput;
-    where?: UserWhereInput;
+  upsertCommentaire: (args: {
+    where: CommentaireWhereUniqueInput;
+    create: CommentaireCreateInput;
+    update: CommentaireUpdateInput;
+  }) => CommentairePromise;
+  deleteCommentaire: (where: CommentaireWhereUniqueInput) => CommentairePromise;
+  deleteManyCommentaires: (
+    where?: CommentaireWhereInput
+  ) => BatchPayloadPromise;
+  createEmprunts: (data: EmpruntsCreateInput) => EmpruntsPromise;
+  updateEmprunts: (args: {
+    data: EmpruntsUpdateInput;
+    where: EmpruntsWhereUniqueInput;
+  }) => EmpruntsPromise;
+  updateManyEmpruntses: (args: {
+    data: EmpruntsUpdateManyMutationInput;
+    where?: EmpruntsWhereInput;
   }) => BatchPayloadPromise;
-  upsertUser: (args: {
-    where: UserWhereUniqueInput;
-    create: UserCreateInput;
-    update: UserUpdateInput;
-  }) => UserPromise;
-  deleteUser: (where: UserWhereUniqueInput) => UserPromise;
-  deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  upsertEmprunts: (args: {
+    where: EmpruntsWhereUniqueInput;
+    create: EmpruntsCreateInput;
+    update: EmpruntsUpdateInput;
+  }) => EmpruntsPromise;
+  deleteEmprunts: (where: EmpruntsWhereUniqueInput) => EmpruntsPromise;
+  deleteManyEmpruntses: (where?: EmpruntsWhereInput) => BatchPayloadPromise;
+  createLivre: (data: LivreCreateInput) => LivrePromise;
+  updateLivre: (args: {
+    data: LivreUpdateInput;
+    where: LivreWhereUniqueInput;
+  }) => LivrePromise;
+  updateManyLivres: (args: {
+    data: LivreUpdateManyMutationInput;
+    where?: LivreWhereInput;
+  }) => BatchPayloadPromise;
+  upsertLivre: (args: {
+    where: LivreWhereUniqueInput;
+    create: LivreCreateInput;
+    update: LivreUpdateInput;
+  }) => LivrePromise;
+  deleteLivre: (where: LivreWhereUniqueInput) => LivrePromise;
+  deleteManyLivres: (where?: LivreWhereInput) => BatchPayloadPromise;
+  createUtilisateur: (data: UtilisateurCreateInput) => UtilisateurPromise;
+  updateUtilisateur: (args: {
+    data: UtilisateurUpdateInput;
+    where: UtilisateurWhereUniqueInput;
+  }) => UtilisateurPromise;
+  updateManyUtilisateurs: (args: {
+    data: UtilisateurUpdateManyMutationInput;
+    where?: UtilisateurWhereInput;
+  }) => BatchPayloadPromise;
+  upsertUtilisateur: (args: {
+    where: UtilisateurWhereUniqueInput;
+    create: UtilisateurCreateInput;
+    update: UtilisateurUpdateInput;
+  }) => UtilisateurPromise;
+  deleteUtilisateur: (where: UtilisateurWhereUniqueInput) => UtilisateurPromise;
+  deleteManyUtilisateurs: (
+    where?: UtilisateurWhereInput
+  ) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -124,12 +204,18 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  post: (
-    where?: PostSubscriptionWhereInput
-  ) => PostSubscriptionPayloadSubscription;
-  user: (
-    where?: UserSubscriptionWhereInput
-  ) => UserSubscriptionPayloadSubscription;
+  commentaire: (
+    where?: CommentaireSubscriptionWhereInput
+  ) => CommentaireSubscriptionPayloadSubscription;
+  emprunts: (
+    where?: EmpruntsSubscriptionWhereInput
+  ) => EmpruntsSubscriptionPayloadSubscription;
+  livre: (
+    where?: LivreSubscriptionWhereInput
+  ) => LivreSubscriptionPayloadSubscription;
+  utilisateur: (
+    where?: UtilisateurSubscriptionWhereInput
+  ) => UtilisateurSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -140,29 +226,49 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type PostOrderByInput =
+export type CommentaireOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "published_ASC"
-  | "published_DESC";
+  | "message_ASC"
+  | "message_DESC"
+  | "eval_ASC"
+  | "eval_DESC"
+  | "utilite_ASC"
+  | "utilite_DESC";
 
-export type UserOrderByInput =
+export type LivreOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "name_ASC"
-  | "name_DESC";
+  | "titre_ASC"
+  | "titre_DESC"
+  | "auteur_ASC"
+  | "auteur_DESC"
+  | "edition_ASC"
+  | "edition_DESC"
+  | "stock_ASC"
+  | "stock_DESC";
+
+export type EmpruntsOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "dateRetour_ASC"
+  | "dateRetour_DESC"
+  | "dateSortie_ASC"
+  | "dateSortie_DESC";
+
+export type UtilisateurOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "nom_ASC"
+  | "nom_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type PostWhereUniqueInput = AtLeastOne<{
+export type CommentaireWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface PostWhereInput {
+export interface CommentaireWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -177,27 +283,44 @@ export interface PostWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  author?: Maybe<UserWhereInput>;
-  AND?: Maybe<PostWhereInput[] | PostWhereInput>;
+  message?: Maybe<String>;
+  message_not?: Maybe<String>;
+  message_in?: Maybe<String[] | String>;
+  message_not_in?: Maybe<String[] | String>;
+  message_lt?: Maybe<String>;
+  message_lte?: Maybe<String>;
+  message_gt?: Maybe<String>;
+  message_gte?: Maybe<String>;
+  message_contains?: Maybe<String>;
+  message_not_contains?: Maybe<String>;
+  message_starts_with?: Maybe<String>;
+  message_not_starts_with?: Maybe<String>;
+  message_ends_with?: Maybe<String>;
+  message_not_ends_with?: Maybe<String>;
+  eval?: Maybe<Int>;
+  eval_not?: Maybe<Int>;
+  eval_in?: Maybe<Int[] | Int>;
+  eval_not_in?: Maybe<Int[] | Int>;
+  eval_lt?: Maybe<Int>;
+  eval_lte?: Maybe<Int>;
+  eval_gt?: Maybe<Int>;
+  eval_gte?: Maybe<Int>;
+  utilite?: Maybe<Int>;
+  utilite_not?: Maybe<Int>;
+  utilite_in?: Maybe<Int[] | Int>;
+  utilite_not_in?: Maybe<Int[] | Int>;
+  utilite_lt?: Maybe<Int>;
+  utilite_lte?: Maybe<Int>;
+  utilite_gt?: Maybe<Int>;
+  utilite_gte?: Maybe<Int>;
+  AND?: Maybe<CommentaireWhereInput[] | CommentaireWhereInput>;
 }
 
-export interface UserWhereInput {
+export type EmpruntsWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface LivreWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -212,152 +335,276 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  posts_some?: Maybe<PostWhereInput>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  titre?: Maybe<String>;
+  titre_not?: Maybe<String>;
+  titre_in?: Maybe<String[] | String>;
+  titre_not_in?: Maybe<String[] | String>;
+  titre_lt?: Maybe<String>;
+  titre_lte?: Maybe<String>;
+  titre_gt?: Maybe<String>;
+  titre_gte?: Maybe<String>;
+  titre_contains?: Maybe<String>;
+  titre_not_contains?: Maybe<String>;
+  titre_starts_with?: Maybe<String>;
+  titre_not_starts_with?: Maybe<String>;
+  titre_ends_with?: Maybe<String>;
+  titre_not_ends_with?: Maybe<String>;
+  auteur?: Maybe<String>;
+  auteur_not?: Maybe<String>;
+  auteur_in?: Maybe<String[] | String>;
+  auteur_not_in?: Maybe<String[] | String>;
+  auteur_lt?: Maybe<String>;
+  auteur_lte?: Maybe<String>;
+  auteur_gt?: Maybe<String>;
+  auteur_gte?: Maybe<String>;
+  auteur_contains?: Maybe<String>;
+  auteur_not_contains?: Maybe<String>;
+  auteur_starts_with?: Maybe<String>;
+  auteur_not_starts_with?: Maybe<String>;
+  auteur_ends_with?: Maybe<String>;
+  auteur_not_ends_with?: Maybe<String>;
+  edition?: Maybe<String>;
+  edition_not?: Maybe<String>;
+  edition_in?: Maybe<String[] | String>;
+  edition_not_in?: Maybe<String[] | String>;
+  edition_lt?: Maybe<String>;
+  edition_lte?: Maybe<String>;
+  edition_gt?: Maybe<String>;
+  edition_gte?: Maybe<String>;
+  edition_contains?: Maybe<String>;
+  edition_not_contains?: Maybe<String>;
+  edition_starts_with?: Maybe<String>;
+  edition_not_starts_with?: Maybe<String>;
+  edition_ends_with?: Maybe<String>;
+  edition_not_ends_with?: Maybe<String>;
+  stock?: Maybe<Int>;
+  stock_not?: Maybe<Int>;
+  stock_in?: Maybe<Int[] | Int>;
+  stock_not_in?: Maybe<Int[] | Int>;
+  stock_lt?: Maybe<Int>;
+  stock_lte?: Maybe<Int>;
+  stock_gt?: Maybe<Int>;
+  stock_gte?: Maybe<Int>;
+  commentaire_some?: Maybe<CommentaireWhereInput>;
+  AND?: Maybe<LivreWhereInput[] | LivreWhereInput>;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export interface EmpruntsWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  titre_some?: Maybe<LivreWhereInput>;
+  dateRetour?: Maybe<String>;
+  dateRetour_not?: Maybe<String>;
+  dateRetour_in?: Maybe<String[] | String>;
+  dateRetour_not_in?: Maybe<String[] | String>;
+  dateRetour_lt?: Maybe<String>;
+  dateRetour_lte?: Maybe<String>;
+  dateRetour_gt?: Maybe<String>;
+  dateRetour_gte?: Maybe<String>;
+  dateRetour_contains?: Maybe<String>;
+  dateRetour_not_contains?: Maybe<String>;
+  dateRetour_starts_with?: Maybe<String>;
+  dateRetour_not_starts_with?: Maybe<String>;
+  dateRetour_ends_with?: Maybe<String>;
+  dateRetour_not_ends_with?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+  dateSortie_not?: Maybe<String>;
+  dateSortie_in?: Maybe<String[] | String>;
+  dateSortie_not_in?: Maybe<String[] | String>;
+  dateSortie_lt?: Maybe<String>;
+  dateSortie_lte?: Maybe<String>;
+  dateSortie_gt?: Maybe<String>;
+  dateSortie_gte?: Maybe<String>;
+  dateSortie_contains?: Maybe<String>;
+  dateSortie_not_contains?: Maybe<String>;
+  dateSortie_starts_with?: Maybe<String>;
+  dateSortie_not_starts_with?: Maybe<String>;
+  dateSortie_ends_with?: Maybe<String>;
+  dateSortie_not_ends_with?: Maybe<String>;
+  AND?: Maybe<EmpruntsWhereInput[] | EmpruntsWhereInput>;
+}
+
+export type LivreWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  email?: Maybe<String>;
 }>;
 
-export interface PostCreateInput {
+export type UtilisateurWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface UtilisateurWhereInput {
   id?: Maybe<ID_Input>;
-  title: String;
-  published?: Maybe<Boolean>;
-  author?: Maybe<UserCreateOneWithoutPostsInput>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  nom?: Maybe<String>;
+  nom_not?: Maybe<String>;
+  nom_in?: Maybe<String[] | String>;
+  nom_not_in?: Maybe<String[] | String>;
+  nom_lt?: Maybe<String>;
+  nom_lte?: Maybe<String>;
+  nom_gt?: Maybe<String>;
+  nom_gte?: Maybe<String>;
+  nom_contains?: Maybe<String>;
+  nom_not_contains?: Maybe<String>;
+  nom_starts_with?: Maybe<String>;
+  nom_not_starts_with?: Maybe<String>;
+  nom_ends_with?: Maybe<String>;
+  nom_not_ends_with?: Maybe<String>;
+  emprunts_some?: Maybe<EmpruntsWhereInput>;
+  commentaire_some?: Maybe<CommentaireWhereInput>;
+  AND?: Maybe<UtilisateurWhereInput[] | UtilisateurWhereInput>;
 }
 
-export interface UserCreateOneWithoutPostsInput {
-  create?: Maybe<UserCreateWithoutPostsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface UserCreateWithoutPostsInput {
+export interface CommentaireCreateInput {
   id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
+  message: String;
+  eval?: Maybe<Int>;
+  utilite?: Maybe<Int>;
 }
 
-export interface PostUpdateInput {
-  title?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  author?: Maybe<UserUpdateOneWithoutPostsInput>;
+export interface CommentaireUpdateInput {
+  message?: Maybe<String>;
+  eval?: Maybe<Int>;
+  utilite?: Maybe<Int>;
 }
 
-export interface UserUpdateOneWithoutPostsInput {
-  create?: Maybe<UserCreateWithoutPostsInput>;
-  update?: Maybe<UserUpdateWithoutPostsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutPostsInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface CommentaireUpdateManyMutationInput {
+  message?: Maybe<String>;
+  eval?: Maybe<Int>;
+  utilite?: Maybe<Int>;
 }
 
-export interface UserUpdateWithoutPostsDataInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-}
-
-export interface UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput;
-  create: UserCreateWithoutPostsInput;
-}
-
-export interface PostUpdateManyMutationInput {
-  title?: Maybe<String>;
-  published?: Maybe<Boolean>;
-}
-
-export interface UserCreateInput {
+export interface EmpruntsCreateInput {
   id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
-  posts?: Maybe<PostCreateManyWithoutAuthorInput>;
+  titre?: Maybe<LivreCreateManyInput>;
+  dateRetour: String;
+  dateSortie: String;
 }
 
-export interface PostCreateManyWithoutAuthorInput {
-  create?: Maybe<PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput>;
-  connect?: Maybe<PostWhereUniqueInput[] | PostWhereUniqueInput>;
+export interface LivreCreateManyInput {
+  create?: Maybe<LivreCreateInput[] | LivreCreateInput>;
+  connect?: Maybe<LivreWhereUniqueInput[] | LivreWhereUniqueInput>;
 }
 
-export interface PostCreateWithoutAuthorInput {
+export interface LivreCreateInput {
   id?: Maybe<ID_Input>;
-  title: String;
-  published?: Maybe<Boolean>;
+  titre?: Maybe<String>;
+  auteur?: Maybe<String>;
+  edition?: Maybe<String>;
+  stock?: Maybe<Int>;
+  commentaire?: Maybe<CommentaireCreateManyInput>;
 }
 
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
-  posts?: Maybe<PostUpdateManyWithoutAuthorInput>;
+export interface CommentaireCreateManyInput {
+  create?: Maybe<CommentaireCreateInput[] | CommentaireCreateInput>;
+  connect?: Maybe<CommentaireWhereUniqueInput[] | CommentaireWhereUniqueInput>;
 }
 
-export interface PostUpdateManyWithoutAuthorInput {
-  create?: Maybe<PostCreateWithoutAuthorInput[] | PostCreateWithoutAuthorInput>;
-  delete?: Maybe<PostWhereUniqueInput[] | PostWhereUniqueInput>;
-  connect?: Maybe<PostWhereUniqueInput[] | PostWhereUniqueInput>;
-  set?: Maybe<PostWhereUniqueInput[] | PostWhereUniqueInput>;
-  disconnect?: Maybe<PostWhereUniqueInput[] | PostWhereUniqueInput>;
+export interface EmpruntsUpdateInput {
+  titre?: Maybe<LivreUpdateManyInput>;
+  dateRetour?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+}
+
+export interface LivreUpdateManyInput {
+  create?: Maybe<LivreCreateInput[] | LivreCreateInput>;
   update?: Maybe<
-    | PostUpdateWithWhereUniqueWithoutAuthorInput[]
-    | PostUpdateWithWhereUniqueWithoutAuthorInput
+    | LivreUpdateWithWhereUniqueNestedInput[]
+    | LivreUpdateWithWhereUniqueNestedInput
   >;
   upsert?: Maybe<
-    | PostUpsertWithWhereUniqueWithoutAuthorInput[]
-    | PostUpsertWithWhereUniqueWithoutAuthorInput
+    | LivreUpsertWithWhereUniqueNestedInput[]
+    | LivreUpsertWithWhereUniqueNestedInput
   >;
-  deleteMany?: Maybe<PostScalarWhereInput[] | PostScalarWhereInput>;
+  delete?: Maybe<LivreWhereUniqueInput[] | LivreWhereUniqueInput>;
+  connect?: Maybe<LivreWhereUniqueInput[] | LivreWhereUniqueInput>;
+  set?: Maybe<LivreWhereUniqueInput[] | LivreWhereUniqueInput>;
+  disconnect?: Maybe<LivreWhereUniqueInput[] | LivreWhereUniqueInput>;
+  deleteMany?: Maybe<LivreScalarWhereInput[] | LivreScalarWhereInput>;
   updateMany?: Maybe<
-    PostUpdateManyWithWhereNestedInput[] | PostUpdateManyWithWhereNestedInput
+    LivreUpdateManyWithWhereNestedInput[] | LivreUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  data: PostUpdateWithoutAuthorDataInput;
+export interface LivreUpdateWithWhereUniqueNestedInput {
+  where: LivreWhereUniqueInput;
+  data: LivreUpdateDataInput;
 }
 
-export interface PostUpdateWithoutAuthorDataInput {
-  title?: Maybe<String>;
-  published?: Maybe<Boolean>;
+export interface LivreUpdateDataInput {
+  titre?: Maybe<String>;
+  auteur?: Maybe<String>;
+  edition?: Maybe<String>;
+  stock?: Maybe<Int>;
+  commentaire?: Maybe<CommentaireUpdateManyInput>;
 }
 
-export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
-  where: PostWhereUniqueInput;
-  update: PostUpdateWithoutAuthorDataInput;
-  create: PostCreateWithoutAuthorInput;
+export interface CommentaireUpdateManyInput {
+  create?: Maybe<CommentaireCreateInput[] | CommentaireCreateInput>;
+  update?: Maybe<
+    | CommentaireUpdateWithWhereUniqueNestedInput[]
+    | CommentaireUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | CommentaireUpsertWithWhereUniqueNestedInput[]
+    | CommentaireUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<CommentaireWhereUniqueInput[] | CommentaireWhereUniqueInput>;
+  connect?: Maybe<CommentaireWhereUniqueInput[] | CommentaireWhereUniqueInput>;
+  set?: Maybe<CommentaireWhereUniqueInput[] | CommentaireWhereUniqueInput>;
+  disconnect?: Maybe<
+    CommentaireWhereUniqueInput[] | CommentaireWhereUniqueInput
+  >;
+  deleteMany?: Maybe<
+    CommentaireScalarWhereInput[] | CommentaireScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | CommentaireUpdateManyWithWhereNestedInput[]
+    | CommentaireUpdateManyWithWhereNestedInput
+  >;
 }
 
-export interface PostScalarWhereInput {
+export interface CommentaireUpdateWithWhereUniqueNestedInput {
+  where: CommentaireWhereUniqueInput;
+  data: CommentaireUpdateDataInput;
+}
+
+export interface CommentaireUpdateDataInput {
+  message?: Maybe<String>;
+  eval?: Maybe<Int>;
+  utilite?: Maybe<Int>;
+}
+
+export interface CommentaireUpsertWithWhereUniqueNestedInput {
+  where: CommentaireWhereUniqueInput;
+  update: CommentaireUpdateDataInput;
+  create: CommentaireCreateInput;
+}
+
+export interface CommentaireScalarWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -372,169 +619,375 @@ export interface PostScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  published?: Maybe<Boolean>;
-  published_not?: Maybe<Boolean>;
-  AND?: Maybe<PostScalarWhereInput[] | PostScalarWhereInput>;
-  OR?: Maybe<PostScalarWhereInput[] | PostScalarWhereInput>;
-  NOT?: Maybe<PostScalarWhereInput[] | PostScalarWhereInput>;
+  message?: Maybe<String>;
+  message_not?: Maybe<String>;
+  message_in?: Maybe<String[] | String>;
+  message_not_in?: Maybe<String[] | String>;
+  message_lt?: Maybe<String>;
+  message_lte?: Maybe<String>;
+  message_gt?: Maybe<String>;
+  message_gte?: Maybe<String>;
+  message_contains?: Maybe<String>;
+  message_not_contains?: Maybe<String>;
+  message_starts_with?: Maybe<String>;
+  message_not_starts_with?: Maybe<String>;
+  message_ends_with?: Maybe<String>;
+  message_not_ends_with?: Maybe<String>;
+  eval?: Maybe<Int>;
+  eval_not?: Maybe<Int>;
+  eval_in?: Maybe<Int[] | Int>;
+  eval_not_in?: Maybe<Int[] | Int>;
+  eval_lt?: Maybe<Int>;
+  eval_lte?: Maybe<Int>;
+  eval_gt?: Maybe<Int>;
+  eval_gte?: Maybe<Int>;
+  utilite?: Maybe<Int>;
+  utilite_not?: Maybe<Int>;
+  utilite_in?: Maybe<Int[] | Int>;
+  utilite_not_in?: Maybe<Int[] | Int>;
+  utilite_lt?: Maybe<Int>;
+  utilite_lte?: Maybe<Int>;
+  utilite_gt?: Maybe<Int>;
+  utilite_gte?: Maybe<Int>;
+  AND?: Maybe<CommentaireScalarWhereInput[] | CommentaireScalarWhereInput>;
+  OR?: Maybe<CommentaireScalarWhereInput[] | CommentaireScalarWhereInput>;
+  NOT?: Maybe<CommentaireScalarWhereInput[] | CommentaireScalarWhereInput>;
 }
 
-export interface PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput;
-  data: PostUpdateManyDataInput;
+export interface CommentaireUpdateManyWithWhereNestedInput {
+  where: CommentaireScalarWhereInput;
+  data: CommentaireUpdateManyDataInput;
 }
 
-export interface PostUpdateManyDataInput {
-  title?: Maybe<String>;
-  published?: Maybe<Boolean>;
+export interface CommentaireUpdateManyDataInput {
+  message?: Maybe<String>;
+  eval?: Maybe<Int>;
+  utilite?: Maybe<Int>;
 }
 
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
-  name?: Maybe<String>;
+export interface LivreUpsertWithWhereUniqueNestedInput {
+  where: LivreWhereUniqueInput;
+  update: LivreUpdateDataInput;
+  create: LivreCreateInput;
 }
 
-export interface PostSubscriptionWhereInput {
+export interface LivreScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  titre?: Maybe<String>;
+  titre_not?: Maybe<String>;
+  titre_in?: Maybe<String[] | String>;
+  titre_not_in?: Maybe<String[] | String>;
+  titre_lt?: Maybe<String>;
+  titre_lte?: Maybe<String>;
+  titre_gt?: Maybe<String>;
+  titre_gte?: Maybe<String>;
+  titre_contains?: Maybe<String>;
+  titre_not_contains?: Maybe<String>;
+  titre_starts_with?: Maybe<String>;
+  titre_not_starts_with?: Maybe<String>;
+  titre_ends_with?: Maybe<String>;
+  titre_not_ends_with?: Maybe<String>;
+  auteur?: Maybe<String>;
+  auteur_not?: Maybe<String>;
+  auteur_in?: Maybe<String[] | String>;
+  auteur_not_in?: Maybe<String[] | String>;
+  auteur_lt?: Maybe<String>;
+  auteur_lte?: Maybe<String>;
+  auteur_gt?: Maybe<String>;
+  auteur_gte?: Maybe<String>;
+  auteur_contains?: Maybe<String>;
+  auteur_not_contains?: Maybe<String>;
+  auteur_starts_with?: Maybe<String>;
+  auteur_not_starts_with?: Maybe<String>;
+  auteur_ends_with?: Maybe<String>;
+  auteur_not_ends_with?: Maybe<String>;
+  edition?: Maybe<String>;
+  edition_not?: Maybe<String>;
+  edition_in?: Maybe<String[] | String>;
+  edition_not_in?: Maybe<String[] | String>;
+  edition_lt?: Maybe<String>;
+  edition_lte?: Maybe<String>;
+  edition_gt?: Maybe<String>;
+  edition_gte?: Maybe<String>;
+  edition_contains?: Maybe<String>;
+  edition_not_contains?: Maybe<String>;
+  edition_starts_with?: Maybe<String>;
+  edition_not_starts_with?: Maybe<String>;
+  edition_ends_with?: Maybe<String>;
+  edition_not_ends_with?: Maybe<String>;
+  stock?: Maybe<Int>;
+  stock_not?: Maybe<Int>;
+  stock_in?: Maybe<Int[] | Int>;
+  stock_not_in?: Maybe<Int[] | Int>;
+  stock_lt?: Maybe<Int>;
+  stock_lte?: Maybe<Int>;
+  stock_gt?: Maybe<Int>;
+  stock_gte?: Maybe<Int>;
+  AND?: Maybe<LivreScalarWhereInput[] | LivreScalarWhereInput>;
+  OR?: Maybe<LivreScalarWhereInput[] | LivreScalarWhereInput>;
+  NOT?: Maybe<LivreScalarWhereInput[] | LivreScalarWhereInput>;
+}
+
+export interface LivreUpdateManyWithWhereNestedInput {
+  where: LivreScalarWhereInput;
+  data: LivreUpdateManyDataInput;
+}
+
+export interface LivreUpdateManyDataInput {
+  titre?: Maybe<String>;
+  auteur?: Maybe<String>;
+  edition?: Maybe<String>;
+  stock?: Maybe<Int>;
+}
+
+export interface EmpruntsUpdateManyMutationInput {
+  dateRetour?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+}
+
+export interface LivreUpdateInput {
+  titre?: Maybe<String>;
+  auteur?: Maybe<String>;
+  edition?: Maybe<String>;
+  stock?: Maybe<Int>;
+  commentaire?: Maybe<CommentaireUpdateManyInput>;
+}
+
+export interface LivreUpdateManyMutationInput {
+  titre?: Maybe<String>;
+  auteur?: Maybe<String>;
+  edition?: Maybe<String>;
+  stock?: Maybe<Int>;
+}
+
+export interface UtilisateurCreateInput {
+  id?: Maybe<ID_Input>;
+  nom: String;
+  emprunts?: Maybe<EmpruntsCreateManyInput>;
+  commentaire?: Maybe<CommentaireCreateManyInput>;
+}
+
+export interface EmpruntsCreateManyInput {
+  create?: Maybe<EmpruntsCreateInput[] | EmpruntsCreateInput>;
+  connect?: Maybe<EmpruntsWhereUniqueInput[] | EmpruntsWhereUniqueInput>;
+}
+
+export interface UtilisateurUpdateInput {
+  nom?: Maybe<String>;
+  emprunts?: Maybe<EmpruntsUpdateManyInput>;
+  commentaire?: Maybe<CommentaireUpdateManyInput>;
+}
+
+export interface EmpruntsUpdateManyInput {
+  create?: Maybe<EmpruntsCreateInput[] | EmpruntsCreateInput>;
+  update?: Maybe<
+    | EmpruntsUpdateWithWhereUniqueNestedInput[]
+    | EmpruntsUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | EmpruntsUpsertWithWhereUniqueNestedInput[]
+    | EmpruntsUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<EmpruntsWhereUniqueInput[] | EmpruntsWhereUniqueInput>;
+  connect?: Maybe<EmpruntsWhereUniqueInput[] | EmpruntsWhereUniqueInput>;
+  set?: Maybe<EmpruntsWhereUniqueInput[] | EmpruntsWhereUniqueInput>;
+  disconnect?: Maybe<EmpruntsWhereUniqueInput[] | EmpruntsWhereUniqueInput>;
+  deleteMany?: Maybe<EmpruntsScalarWhereInput[] | EmpruntsScalarWhereInput>;
+  updateMany?: Maybe<
+    | EmpruntsUpdateManyWithWhereNestedInput[]
+    | EmpruntsUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface EmpruntsUpdateWithWhereUniqueNestedInput {
+  where: EmpruntsWhereUniqueInput;
+  data: EmpruntsUpdateDataInput;
+}
+
+export interface EmpruntsUpdateDataInput {
+  titre?: Maybe<LivreUpdateManyInput>;
+  dateRetour?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+}
+
+export interface EmpruntsUpsertWithWhereUniqueNestedInput {
+  where: EmpruntsWhereUniqueInput;
+  update: EmpruntsUpdateDataInput;
+  create: EmpruntsCreateInput;
+}
+
+export interface EmpruntsScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  dateRetour?: Maybe<String>;
+  dateRetour_not?: Maybe<String>;
+  dateRetour_in?: Maybe<String[] | String>;
+  dateRetour_not_in?: Maybe<String[] | String>;
+  dateRetour_lt?: Maybe<String>;
+  dateRetour_lte?: Maybe<String>;
+  dateRetour_gt?: Maybe<String>;
+  dateRetour_gte?: Maybe<String>;
+  dateRetour_contains?: Maybe<String>;
+  dateRetour_not_contains?: Maybe<String>;
+  dateRetour_starts_with?: Maybe<String>;
+  dateRetour_not_starts_with?: Maybe<String>;
+  dateRetour_ends_with?: Maybe<String>;
+  dateRetour_not_ends_with?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+  dateSortie_not?: Maybe<String>;
+  dateSortie_in?: Maybe<String[] | String>;
+  dateSortie_not_in?: Maybe<String[] | String>;
+  dateSortie_lt?: Maybe<String>;
+  dateSortie_lte?: Maybe<String>;
+  dateSortie_gt?: Maybe<String>;
+  dateSortie_gte?: Maybe<String>;
+  dateSortie_contains?: Maybe<String>;
+  dateSortie_not_contains?: Maybe<String>;
+  dateSortie_starts_with?: Maybe<String>;
+  dateSortie_not_starts_with?: Maybe<String>;
+  dateSortie_ends_with?: Maybe<String>;
+  dateSortie_not_ends_with?: Maybe<String>;
+  AND?: Maybe<EmpruntsScalarWhereInput[] | EmpruntsScalarWhereInput>;
+  OR?: Maybe<EmpruntsScalarWhereInput[] | EmpruntsScalarWhereInput>;
+  NOT?: Maybe<EmpruntsScalarWhereInput[] | EmpruntsScalarWhereInput>;
+}
+
+export interface EmpruntsUpdateManyWithWhereNestedInput {
+  where: EmpruntsScalarWhereInput;
+  data: EmpruntsUpdateManyDataInput;
+}
+
+export interface EmpruntsUpdateManyDataInput {
+  dateRetour?: Maybe<String>;
+  dateSortie?: Maybe<String>;
+}
+
+export interface UtilisateurUpdateManyMutationInput {
+  nom?: Maybe<String>;
+}
+
+export interface CommentaireSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PostWhereInput>;
-  AND?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
+  node?: Maybe<CommentaireWhereInput>;
+  AND?: Maybe<
+    CommentaireSubscriptionWhereInput[] | CommentaireSubscriptionWhereInput
+  >;
 }
 
-export interface UserSubscriptionWhereInput {
+export interface EmpruntsSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  node?: Maybe<EmpruntsWhereInput>;
+  AND?: Maybe<
+    EmpruntsSubscriptionWhereInput[] | EmpruntsSubscriptionWhereInput
+  >;
+}
+
+export interface LivreSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<LivreWhereInput>;
+  AND?: Maybe<LivreSubscriptionWhereInput[] | LivreSubscriptionWhereInput>;
+}
+
+export interface UtilisateurSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UtilisateurWhereInput>;
+  AND?: Maybe<
+    UtilisateurSubscriptionWhereInput[] | UtilisateurSubscriptionWhereInput
+  >;
 }
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface Post {
+export interface Commentaire {
   id: ID_Output;
-  title: String;
-  published: Boolean;
+  message: String;
+  eval?: Int;
+  utilite?: Int;
 }
 
-export interface PostPromise extends Promise<Post>, Fragmentable {
+export interface CommentairePromise extends Promise<Commentaire>, Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  published: () => Promise<Boolean>;
-  author: <T = UserPromise>() => T;
+  message: () => Promise<String>;
+  eval: () => Promise<Int>;
+  utilite: () => Promise<Int>;
 }
 
-export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>,
+export interface CommentaireSubscription
+  extends Promise<AsyncIterator<Commentaire>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
-  author: <T = UserSubscription>() => T;
+  message: () => Promise<AsyncIterator<String>>;
+  eval: () => Promise<AsyncIterator<Int>>;
+  utilite: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PostNullablePromise
-  extends Promise<Post | null>,
+export interface CommentaireNullablePromise
+  extends Promise<Commentaire | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  published: () => Promise<Boolean>;
-  author: <T = UserPromise>() => T;
+  message: () => Promise<String>;
+  eval: () => Promise<Int>;
+  utilite: () => Promise<Int>;
 }
 
-export interface User {
-  id: ID_Output;
-  email?: String;
-  name: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-  posts: <T = FragmentableArray<Post>>(args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  posts: <T = Promise<AsyncIterator<PostSubscription>>>(args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
-  posts: <T = FragmentableArray<Post>>(args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface PostConnection {
+export interface CommentaireConnection {
   pageInfo: PageInfo;
-  edges: PostEdge[];
+  edges: CommentaireEdge[];
 }
 
-export interface PostConnectionPromise
-  extends Promise<PostConnection>,
+export interface CommentaireConnectionPromise
+  extends Promise<CommentaireConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PostEdge>>() => T;
-  aggregate: <T = AggregatePostPromise>() => T;
+  edges: <T = FragmentableArray<CommentaireEdge>>() => T;
+  aggregate: <T = AggregateCommentairePromise>() => T;
 }
 
-export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>,
+export interface CommentaireConnectionSubscription
+  extends Promise<AsyncIterator<CommentaireConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePostSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentaireEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentaireSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -560,89 +1013,399 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PostEdge {
-  node: Post;
+export interface CommentaireEdge {
+  node: Commentaire;
   cursor: String;
 }
 
-export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
-  node: <T = PostPromise>() => T;
+export interface CommentaireEdgePromise
+  extends Promise<CommentaireEdge>,
+    Fragmentable {
+  node: <T = CommentairePromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>,
+export interface CommentaireEdgeSubscription
+  extends Promise<AsyncIterator<CommentaireEdge>>,
     Fragmentable {
-  node: <T = PostSubscription>() => T;
+  node: <T = CommentaireSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregatePost {
+export interface AggregateCommentaire {
   count: Int;
 }
 
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
+export interface AggregateCommentairePromise
+  extends Promise<AggregateCommentaire>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>,
+export interface AggregateCommentaireSubscription
+  extends Promise<AsyncIterator<AggregateCommentaire>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
+export interface Emprunts {
+  id: ID_Output;
+  dateRetour: String;
+  dateSortie: String;
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface EmpruntsPromise extends Promise<Emprunts>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  titre: <T = FragmentableArray<Livre>>(args?: {
+    where?: LivreWhereInput;
+    orderBy?: LivreOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  dateRetour: () => Promise<String>;
+  dateSortie: () => Promise<String>;
+}
+
+export interface EmpruntsSubscription
+  extends Promise<AsyncIterator<Emprunts>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  titre: <T = Promise<AsyncIterator<LivreSubscription>>>(args?: {
+    where?: LivreWhereInput;
+    orderBy?: LivreOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  dateRetour: () => Promise<AsyncIterator<String>>;
+  dateSortie: () => Promise<AsyncIterator<String>>;
+}
+
+export interface EmpruntsNullablePromise
+  extends Promise<Emprunts | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  titre: <T = FragmentableArray<Livre>>(args?: {
+    where?: LivreWhereInput;
+    orderBy?: LivreOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  dateRetour: () => Promise<String>;
+  dateSortie: () => Promise<String>;
+}
+
+export interface Livre {
+  id: ID_Output;
+  titre?: String;
+  auteur?: String;
+  edition?: String;
+  stock?: Int;
+}
+
+export interface LivrePromise extends Promise<Livre>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  titre: () => Promise<String>;
+  auteur: () => Promise<String>;
+  edition: () => Promise<String>;
+  stock: () => Promise<Int>;
+  commentaire: <T = FragmentableArray<Commentaire>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface LivreSubscription
+  extends Promise<AsyncIterator<Livre>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  titre: () => Promise<AsyncIterator<String>>;
+  auteur: () => Promise<AsyncIterator<String>>;
+  edition: () => Promise<AsyncIterator<String>>;
+  stock: () => Promise<AsyncIterator<Int>>;
+  commentaire: <T = Promise<AsyncIterator<CommentaireSubscription>>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface LivreNullablePromise
+  extends Promise<Livre | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  titre: () => Promise<String>;
+  auteur: () => Promise<String>;
+  edition: () => Promise<String>;
+  stock: () => Promise<Int>;
+  commentaire: <T = FragmentableArray<Commentaire>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface EmpruntsConnection {
+  pageInfo: PageInfo;
+  edges: EmpruntsEdge[];
+}
+
+export interface EmpruntsConnectionPromise
+  extends Promise<EmpruntsConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<EmpruntsEdge>>() => T;
+  aggregate: <T = AggregateEmpruntsPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface EmpruntsConnectionSubscription
+  extends Promise<AsyncIterator<EmpruntsConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<EmpruntsEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateEmpruntsSubscription>() => T;
 }
 
-export interface UserEdge {
-  node: User;
+export interface EmpruntsEdge {
+  node: Emprunts;
   cursor: String;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
+export interface EmpruntsEdgePromise
+  extends Promise<EmpruntsEdge>,
+    Fragmentable {
+  node: <T = EmpruntsPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface EmpruntsEdgeSubscription
+  extends Promise<AsyncIterator<EmpruntsEdge>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = EmpruntsSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUser {
+export interface AggregateEmprunts {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateEmpruntsPromise
+  extends Promise<AggregateEmprunts>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateEmpruntsSubscription
+  extends Promise<AsyncIterator<AggregateEmprunts>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface LivreConnection {
+  pageInfo: PageInfo;
+  edges: LivreEdge[];
+}
+
+export interface LivreConnectionPromise
+  extends Promise<LivreConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<LivreEdge>>() => T;
+  aggregate: <T = AggregateLivrePromise>() => T;
+}
+
+export interface LivreConnectionSubscription
+  extends Promise<AsyncIterator<LivreConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<LivreEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateLivreSubscription>() => T;
+}
+
+export interface LivreEdge {
+  node: Livre;
+  cursor: String;
+}
+
+export interface LivreEdgePromise extends Promise<LivreEdge>, Fragmentable {
+  node: <T = LivrePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface LivreEdgeSubscription
+  extends Promise<AsyncIterator<LivreEdge>>,
+    Fragmentable {
+  node: <T = LivreSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateLivre {
+  count: Int;
+}
+
+export interface AggregateLivrePromise
+  extends Promise<AggregateLivre>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLivreSubscription
+  extends Promise<AsyncIterator<AggregateLivre>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Utilisateur {
+  id: ID_Output;
+  nom: String;
+}
+
+export interface UtilisateurPromise extends Promise<Utilisateur>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  nom: () => Promise<String>;
+  emprunts: <T = FragmentableArray<Emprunts>>(args?: {
+    where?: EmpruntsWhereInput;
+    orderBy?: EmpruntsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  commentaire: <T = FragmentableArray<Commentaire>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UtilisateurSubscription
+  extends Promise<AsyncIterator<Utilisateur>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  nom: () => Promise<AsyncIterator<String>>;
+  emprunts: <T = Promise<AsyncIterator<EmpruntsSubscription>>>(args?: {
+    where?: EmpruntsWhereInput;
+    orderBy?: EmpruntsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  commentaire: <T = Promise<AsyncIterator<CommentaireSubscription>>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UtilisateurNullablePromise
+  extends Promise<Utilisateur | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  nom: () => Promise<String>;
+  emprunts: <T = FragmentableArray<Emprunts>>(args?: {
+    where?: EmpruntsWhereInput;
+    orderBy?: EmpruntsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  commentaire: <T = FragmentableArray<Commentaire>>(args?: {
+    where?: CommentaireWhereInput;
+    orderBy?: CommentaireOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface UtilisateurConnection {
+  pageInfo: PageInfo;
+  edges: UtilisateurEdge[];
+}
+
+export interface UtilisateurConnectionPromise
+  extends Promise<UtilisateurConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UtilisateurEdge>>() => T;
+  aggregate: <T = AggregateUtilisateurPromise>() => T;
+}
+
+export interface UtilisateurConnectionSubscription
+  extends Promise<AsyncIterator<UtilisateurConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UtilisateurEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUtilisateurSubscription>() => T;
+}
+
+export interface UtilisateurEdge {
+  node: Utilisateur;
+  cursor: String;
+}
+
+export interface UtilisateurEdgePromise
+  extends Promise<UtilisateurEdge>,
+    Fragmentable {
+  node: <T = UtilisateurPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UtilisateurEdgeSubscription
+  extends Promise<AsyncIterator<UtilisateurEdge>>,
+    Fragmentable {
+  node: <T = UtilisateurSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUtilisateur {
+  count: Int;
+}
+
+export interface AggregateUtilisateurPromise
+  extends Promise<AggregateUtilisateur>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUtilisateurSubscription
+  extends Promise<AsyncIterator<AggregateUtilisateur>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -663,98 +1426,198 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface PostSubscriptionPayload {
+export interface CommentaireSubscriptionPayload {
   mutation: MutationType;
-  node: Post;
+  node: Commentaire;
   updatedFields: String[];
-  previousValues: PostPreviousValues;
+  previousValues: CommentairePreviousValues;
 }
 
-export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>,
+export interface CommentaireSubscriptionPayloadPromise
+  extends Promise<CommentaireSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = PostPromise>() => T;
+  node: <T = CommentairePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = PostPreviousValuesPromise>() => T;
+  previousValues: <T = CommentairePreviousValuesPromise>() => T;
 }
 
-export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+export interface CommentaireSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentaireSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PostSubscription>() => T;
+  node: <T = CommentaireSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PostPreviousValuesSubscription>() => T;
+  previousValues: <T = CommentairePreviousValuesSubscription>() => T;
 }
 
-export interface PostPreviousValues {
+export interface CommentairePreviousValues {
   id: ID_Output;
-  title: String;
-  published: Boolean;
+  message: String;
+  eval?: Int;
+  utilite?: Int;
 }
 
-export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>,
+export interface CommentairePreviousValuesPromise
+  extends Promise<CommentairePreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  published: () => Promise<Boolean>;
+  message: () => Promise<String>;
+  eval: () => Promise<Int>;
+  utilite: () => Promise<Int>;
 }
 
-export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>,
+export interface CommentairePreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentairePreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  published: () => Promise<AsyncIterator<Boolean>>;
+  message: () => Promise<AsyncIterator<String>>;
+  eval: () => Promise<AsyncIterator<Int>>;
+  utilite: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserSubscriptionPayload {
+export interface EmpruntsSubscriptionPayload {
   mutation: MutationType;
-  node: User;
+  node: Emprunts;
   updatedFields: String[];
-  previousValues: UserPreviousValues;
+  previousValues: EmpruntsPreviousValues;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface EmpruntsSubscriptionPayloadPromise
+  extends Promise<EmpruntsSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
+  node: <T = EmpruntsPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  previousValues: <T = EmpruntsPreviousValuesPromise>() => T;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface EmpruntsSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<EmpruntsSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
+  node: <T = EmpruntsSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  previousValues: <T = EmpruntsPreviousValuesSubscription>() => T;
 }
 
-export interface UserPreviousValues {
+export interface EmpruntsPreviousValues {
   id: ID_Output;
-  email?: String;
-  name: String;
+  dateRetour: String;
+  dateSortie: String;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface EmpruntsPreviousValuesPromise
+  extends Promise<EmpruntsPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
+  dateRetour: () => Promise<String>;
+  dateSortie: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface EmpruntsPreviousValuesSubscription
+  extends Promise<AsyncIterator<EmpruntsPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
+  dateRetour: () => Promise<AsyncIterator<String>>;
+  dateSortie: () => Promise<AsyncIterator<String>>;
+}
+
+export interface LivreSubscriptionPayload {
+  mutation: MutationType;
+  node: Livre;
+  updatedFields: String[];
+  previousValues: LivrePreviousValues;
+}
+
+export interface LivreSubscriptionPayloadPromise
+  extends Promise<LivreSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LivrePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LivrePreviousValuesPromise>() => T;
+}
+
+export interface LivreSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LivreSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LivreSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LivrePreviousValuesSubscription>() => T;
+}
+
+export interface LivrePreviousValues {
+  id: ID_Output;
+  titre?: String;
+  auteur?: String;
+  edition?: String;
+  stock?: Int;
+}
+
+export interface LivrePreviousValuesPromise
+  extends Promise<LivrePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  titre: () => Promise<String>;
+  auteur: () => Promise<String>;
+  edition: () => Promise<String>;
+  stock: () => Promise<Int>;
+}
+
+export interface LivrePreviousValuesSubscription
+  extends Promise<AsyncIterator<LivrePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  titre: () => Promise<AsyncIterator<String>>;
+  auteur: () => Promise<AsyncIterator<String>>;
+  edition: () => Promise<AsyncIterator<String>>;
+  stock: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UtilisateurSubscriptionPayload {
+  mutation: MutationType;
+  node: Utilisateur;
+  updatedFields: String[];
+  previousValues: UtilisateurPreviousValues;
+}
+
+export interface UtilisateurSubscriptionPayloadPromise
+  extends Promise<UtilisateurSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = UtilisateurPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UtilisateurPreviousValuesPromise>() => T;
+}
+
+export interface UtilisateurSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UtilisateurSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UtilisateurSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UtilisateurPreviousValuesSubscription>() => T;
+}
+
+export interface UtilisateurPreviousValues {
+  id: ID_Output;
+  nom: String;
+}
+
+export interface UtilisateurPreviousValuesPromise
+  extends Promise<UtilisateurPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  nom: () => Promise<String>;
+}
+
+export interface UtilisateurPreviousValuesSubscription
+  extends Promise<AsyncIterator<UtilisateurPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  nom: () => Promise<AsyncIterator<String>>;
 }
 
 /*
@@ -769,14 +1632,14 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 export type Long = string;
 
@@ -786,11 +1649,19 @@ export type Long = string;
 
 export const models: Model[] = [
   {
-    name: "User",
+    name: "Utilisateur",
     embedded: false
   },
   {
-    name: "Post",
+    name: "Emprunts",
+    embedded: false
+  },
+  {
+    name: "Livre",
+    embedded: false
+  },
+  {
+    name: "Commentaire",
     embedded: false
   }
 ];
