@@ -16,20 +16,28 @@ type Utilisateur {
   id: ID! @id
   nom: String!
   emprunts: [Emprunts]
-  commentaire : [Commentaire!]!
+  commentaire : [Commentaire]
 
 
 }
+scalar Date
+
 type Emprunts {
 id: ID! @id
-titre: [Book]
+titre: [Livre]
 dateRetour : String!
 dateSortie: String!
 
 
 }
 type Livre {
+id: ID! @id
 titre : String
+auteur: String
+edition : String
+stock : Int
+commentaire: [Commentaire]
+
 }
 type Commentaire {
 
